@@ -1,6 +1,7 @@
 import "./FormStyles.css";
 import Modal from "./Modal";
 import { useState } from "react";
+import MyInputComponent from "./MyInputComponent";
 
 export default function LoanForm() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -34,6 +35,15 @@ export default function LoanForm() {
       setModalVisible(false);
     }
   }
+  function handleChangeNameInput(value) {
+    setFormInputs({ ...formInputs, name: value });
+  }
+  function handleChangeAgeInput(value) {
+    setFormInputs({ ...formInputs, age: value });
+  }
+  function handleChangePhoneInput(value) {
+    setFormInputs({ ...formInputs, phone: value });
+  }
   return (
     <div
       onClick={handleDivClick}
@@ -43,29 +53,23 @@ export default function LoanForm() {
       <form id="loan-form" className="flex" style={{ flexDirection: "column" }}>
         <h1>Requesting a loan</h1>
         <hr></hr>
-        <label>Name</label>
-        <input
+        <MyInputComponent
           value={formInputs.name}
-          onChange={(e) => {
-            setFormInputs({ ...formInputs, name: e.target.value });
-          }}
-        ></input>
+          handleChange={handleChangeNameInput}
+          inputName="Name"
+        />
 
-        <label>Phone Number</label>
-        <input
-          value={formInputs.phone}
-          onChange={(e) => {
-            setFormInputs({ ...formInputs, phone: e.target.value });
-          }}
-        ></input>
-
-        <label>Age</label>
-        <input
+        <MyInputComponent
           value={formInputs.age}
-          onChange={(e) => {
-            setFormInputs({ ...formInputs, age: e.target.value });
-          }}
-        ></input>
+          handleChange={handleChangeAgeInput}
+          inputName="Age"
+        />
+
+        <MyInputComponent
+          value={formInputs.phone}
+          handleChange={handleChangePhoneInput}
+          inputName="phone number"
+        />
 
         <label style={{ marginTop: "30px" }}>Are you an employee</label>
         <input
