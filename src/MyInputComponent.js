@@ -1,13 +1,13 @@
+import MyGrandInputComponent from "./MyGrandInputComponent";
+
 export default function MyInputComponent({ value, handleChange, inputName }) {
   return (
     <>
-      <label>{inputName}</label>
-      <input
+      <MyGrandInputComponent
         value={value}
-        onChange={(event) => {
-          handleChange(event.target.value);
-        }}
-      ></input>
+        handleChange={handleChange}
+        inputName={inputName}
+      />
     </>
   );
 }

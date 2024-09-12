@@ -22,9 +22,11 @@ export default function LoanForm() {
     if (age < 18 || age > 100) {
       setErrorMessage("This age is not allowed");
     } else if (phone.length < 10 || phone.length > 15) {
-      setErrorMessage("This phone number is too long is not allowed");
-    } else if (typeof phone === "string") {
-      setErrorMessage("This phone number has string which is not allowed");
+      setErrorMessage("This phone number is not in range,  is not allowed");
+    } else if (!/^\d+$/.test(phone)) {
+      setErrorMessage(
+        "This phone number contains non-numeric characters, which is not allowed"
+      );
     } else setErrorMessage(null);
 
     console.log("button:", buttonIsDisabled);
