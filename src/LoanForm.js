@@ -2,6 +2,7 @@ import "./FormStyles.css";
 import Modal from "./Modal";
 import { useState } from "react";
 import MyInputComponent from "./MyInputComponent";
+import { FormInputContext } from "./contexts/FormInputContext";
 
 export default function LoanForm() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -55,23 +56,35 @@ export default function LoanForm() {
       <form id="loan-form" className="flex" style={{ flexDirection: "column" }}>
         <h1>Requesting a loan</h1>
         <hr></hr>
-        <MyInputComponent
-          value={formInputs.name}
-          handleChange={handleChangeNameInput}
-          inputName="Name"
-        />
+        <FormInputContext.Provider
+          value={{
+            labelTitle: "Name",
+            handleChange: handleChangeNameInput,
+            inputName: formInputs.name,
+          }}
+        >
+          <MyInputComponent />
+        </FormInputContext.Provider>
 
-        <MyInputComponent
-          value={formInputs.age}
-          handleChange={handleChangeAgeInput}
-          inputName="Age"
-        />
+        <FormInputContext.Provider
+          value={{
+            labelTitle: "Age",
+            handleChange: handleChangeAgeInput,
+            inputName: formInputs.age,
+          }}
+        >
+          <MyInputComponent />
+        </FormInputContext.Provider>
 
-        <MyInputComponent
-          value={formInputs.phone}
-          handleChange={handleChangePhoneInput}
-          inputName="phone number"
-        />
+        <FormInputContext.Provider
+          value={{
+            labelTitle: "Phone Number",
+            handleChange: handleChangePhoneInput,
+            inputName: formInputs.phone,
+          }}
+        >
+          <MyInputComponent />
+        </FormInputContext.Provider>
 
         <label style={{ marginTop: "30px" }}>Are you an employee</label>
         <input

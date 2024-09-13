@@ -1,15 +1,16 @@
-export default function MyGrandInputComponent({
-  value,
-  handleChange,
-  inputName,
-}) {
+import { FormInputContext } from "./contexts/FormInputContext";
+import React, { useContext } from "react";
+
+export default function MyGrandChildInputComponent() {
+  const myInputContext = useContext(FormInputContext);
+  //   console.log("context", myInputContext);
   return (
     <>
-      <label>{inputName}</label>
+      <label>{myInputContext.labelTitle}</label>
       <input
-        value={value}
+        value={myInputContext.inputValue}
         onChange={(event) => {
-          handleChange(event.target.value);
+          myInputContext.handleChange(event.target.value);
         }}
       ></input>
     </>
